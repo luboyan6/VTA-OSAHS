@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import accuracy_score
-from data_processing import read_pkl
+from data_processing import read_dataset
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
 from utils.ordinal_loss import OrdinalRegressionLoss
@@ -27,7 +27,7 @@ class MLP(nn.Module):
 
 def load_data():
     data_path = r'yourpath'
-    dataset = read_pkl(data_path)
+    dataset = read_dataset(data_path)
 
     features = []
     labels = []
@@ -51,7 +51,7 @@ def train():
     batch_size = 4
     test_batch_size = 4
     num_epochs = 100
-    dropout = 0.3
+    dropout = 0.4
 
     X,y = load_data()
 

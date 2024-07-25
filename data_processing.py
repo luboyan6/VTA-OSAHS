@@ -2,18 +2,18 @@ import os
 import csv
 import cv2
 import numpy as np
-import pickle
+import pickle as pic
 import mediapipe as mp
 import torch
 from utils.feature_selector import FeatureSelector
 from utils.multimodal_fusion import data_fusion
 
-def write_pkl(write_data, pkl_path):
-    pickle.dump(write_data, open(pkl_path, 'wb'))
+def save_dataset(dataset, save_path):
+    pic.dump(dataset, open(save_path, 'wb'))
 
-def read_pkl(pkl_file):
-    my_data = pickle.load(open(pkl_file, 'rb'))
-    return my_data
+def read_dataset(dataset_path):
+    return pic.load(open(dataset_path, 'rb'))
+
 
 def insertion_sort(arr):
     for i in range(1, len(arr)):
@@ -200,6 +200,6 @@ def handle_dataset():
                     dataset.append(item)
 
     processed_data = data_fusion(dataset)
-    write_pkl(processed_data, r'yourpath')
+    save_dataset(processed_data, r'yourpath')
 
 
