@@ -4,26 +4,11 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import accuracy_score
+from utils.MLP_model import MLP
 from data_processing import read_dataset
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
 from utils.ordinal_loss import OrdinalRegressionLoss
-
-class MLP(nn.Module):
-    def __init__(self, input_size, hidden_size, output_size, dropout):
-        super(MLP, self).__init__()
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, hidden_size)
-        self.fc3 = nn.Linear(hidden_size, output_size)
-        self.dropout = nn.Dropout(dropout)
-
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = self.dropout(x)
-        x = F.relu(self.fc2(x))
-        x = self.dropout(x)
-        x = self.fc3(x)
-        return x
 
 def load_data():
     data_path = r'yourpath'
