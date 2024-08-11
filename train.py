@@ -110,7 +110,6 @@ def train():
 
         val_loss /= len(val_loader)
         val_acc /= len(val_loader)
-
         print(f'Validation Loss: {val_loss:.4f}, Validation Acc: {val_acc:.4f}')
 
         # Test
